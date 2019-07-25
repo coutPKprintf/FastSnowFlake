@@ -59,7 +59,7 @@ public class FastSnowFlake {
   private long datacenterId;  //数据中心
   private long machineId;     //机器标识
   private long sequence = 0L; //序列号
-  private long lastStmp = START_STMP;//上一次时间戳
+  private long lastStmp = System.currentTimeMillis();//上一次时间戳
   private long allowLoadMills; //允许透支的时间
   private ReentrantLock lock;
 
