@@ -1,12 +1,9 @@
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.Function;
 
@@ -65,7 +62,6 @@ public class FastSnowFlake {
   private long lastStmp = START_STMP;//上一次时间戳
   private long allowLoadMills; //允许透支的时间
   private ReentrantLock lock;
-  private AtomicLong count = new AtomicLong();
 
   public FastSnowFlake(long datacenterId, long machineId, long allowLoadMills) {
     if (datacenterId > MAX_DATACENTER_NUM || datacenterId < 0) {
@@ -82,10 +78,6 @@ public class FastSnowFlake {
 
   public FastSnowFlake(long datacenterId, long machineId) {
     this(datacenterId, machineId, 0);
-  }
-
-  public long fastNextId() {
-    return count.incrementAndGet();
   }
 
   /**
@@ -160,7 +152,6 @@ public class FastSnowFlake {
     };
     for (int thread : threads) {
       perfTests(thread, 0, (1 << 12), fastSnowFlakeFunction, "nextId");
-      perfTests(thread, 0, (1 << 12), FastSnowFlake::fastNextId, "fastNextId");
     }
   }
 
