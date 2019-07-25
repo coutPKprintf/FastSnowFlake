@@ -25,36 +25,36 @@ public class FastSnowFlake {
   /**
    * 起始的时间戳, 2019-01-01 00:00:00
    */
-  private final static long START_STMP = 1546272000000L;
+  private static final long START_STMP = 1546272000000L;
 
   /**
    * 每一部分占用的位数
    */
-  private final static long SEQUENCE_BIT = 12; //序列号占用的位数
+  private static final long SEQUENCE_BIT = 12; //序列号占用的位数
 
   /**
    * 128台机器
    */
-  private final static long MACHINE_BIT = 7;   //机器标识占用的位数
+  private static final long MACHINE_BIT = 7;   //机器标识占用的位数
 
   /**
    * 8个数据中心
    */
-  private final static long DATACENTER_BIT = 3;//数据中心占用的位数
+  private static final long DATACENTER_BIT = 3;//数据中心占用的位数
 
   /**
    * 每一部分的最大值
    */
-  private final static long MAX_DATACENTER_NUM = ~(-1L << DATACENTER_BIT);
-  private final static long MAX_MACHINE_NUM = ~(-1L << MACHINE_BIT);
-  private final static long MAX_SEQUENCE = ~(-1L << SEQUENCE_BIT);
+  private static final long MAX_DATACENTER_NUM = ~(-1L << DATACENTER_BIT);
+  private static final long MAX_MACHINE_NUM = ~(-1L << MACHINE_BIT);
+  private static final long MAX_SEQUENCE = ~(-1L << SEQUENCE_BIT);
 
   /**
    * 每一部分向左的位移
    */
-  private final static long MACHINE_LEFT = SEQUENCE_BIT;
-  private final static long DATACENTER_LEFT = SEQUENCE_BIT + MACHINE_BIT;
-  private final static long TIMESTMP_LEFT = DATACENTER_LEFT + DATACENTER_BIT;
+  private static final long MACHINE_LEFT = SEQUENCE_BIT;
+  private static final long DATACENTER_LEFT = SEQUENCE_BIT + MACHINE_BIT;
+  private static final long TIMESTMP_LEFT = DATACENTER_LEFT + DATACENTER_BIT;
 
   private long datacenterId;  //数据中心
   private long machineId;     //机器标识
